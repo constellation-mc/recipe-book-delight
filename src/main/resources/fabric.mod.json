@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "fd-recipe-book",
+  "version": "${version}",
+  "name": "Recipe Book Delight",
+  "description": "",
+  "authors": [],
+  "contact": {
+    "repo": "https://github.com/melontini/fd-recipe-book"
+  },
+  "license": "MIT",
+  "icon": "assets/fd-recipe-book/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "me.melontini.fdrecipebook.client.RecipeBookDelightClient"
+    ],
+    "main": [
+      "me.melontini.fdrecipebook.RecipeBookDelight"
+    ]
+  },
+  "mixins": [
+    "fd-recipe-book.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": "${minecraft_version}",
+    "farmersdelight": "*"
+  }
+}
