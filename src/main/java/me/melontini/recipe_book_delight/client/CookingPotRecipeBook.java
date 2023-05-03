@@ -20,20 +20,18 @@ import java.util.List;
 public class CookingPotRecipeBook extends RecipeBookWidget {
     @Override
     public void showGhostRecipe(Recipe<?> recipe, List<Slot> slots) {
-        if (slots.get(6).getStack().isEmpty() || ItemStack.areItemsEqual(recipe.getOutput(), slots.get(6).getStack())) {
-            if (recipe instanceof CookingPotRecipe cookingPotRecipe) {
-                ItemStack container = cookingPotRecipe.getContainer();
-                ItemStack itemStack = cookingPotRecipe.getOutput();
+        if (recipe instanceof CookingPotRecipe cookingPotRecipe) {
+            ItemStack container = cookingPotRecipe.getContainer();
+            ItemStack itemStack = cookingPotRecipe.getOutput();
 
-                this.ghostSlots.setRecipe(cookingPotRecipe);
-                this.ghostSlots.addSlot(Ingredient.ofStacks(itemStack), slots.get(8).x, slots.get(8).y);
-                if (!container.isEmpty()) {
-                    this.ghostSlots.addSlot(Ingredient.ofStacks(container), slots.get(7).x, slots.get(7).y);
-                }
-                DefaultedList<Ingredient> defaultedList = cookingPotRecipe.getIngredients();
-                for (int i = 0; i < defaultedList.size(); i++) {
-                    this.ghostSlots.addSlot(defaultedList.get(i), slots.get(i).x, slots.get(i).y);
-                }
+            this.ghostSlots.setRecipe(cookingPotRecipe);
+            this.ghostSlots.addSlot(Ingredient.ofStacks(itemStack), slots.get(8).x, slots.get(8).y);
+            if (!container.isEmpty()) {
+                this.ghostSlots.addSlot(Ingredient.ofStacks(container), slots.get(7).x, slots.get(7).y);
+            }
+            DefaultedList<Ingredient> defaultedList = cookingPotRecipe.getIngredients();
+            for (int i = 0; i < defaultedList.size(); i++) {
+                this.ghostSlots.addSlot(defaultedList.get(i), slots.get(i).x, slots.get(i).y);
             }
         }
     }
