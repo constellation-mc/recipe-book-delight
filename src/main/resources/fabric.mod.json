@@ -1,15 +1,17 @@
 {
   "schemaVersion": 1,
-  "id": "fd-recipe-book",
+  "id": "recipe-book-delight",
   "version": "${version}",
   "name": "Recipe Book Delight",
   "description": "",
-  "authors": [],
+  "authors": [
+    "melontini"
+  ],
   "contact": {
-    "repo": "https://github.com/melontini/fd-recipe-book"
+    "repo": "https://github.com/melontini/recipe-book-delight"
   },
   "license": "MIT",
-  "icon": "assets/fd-recipe-book/icon.png",
+  "icon": "assets/recipe-book-delight/icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
@@ -20,7 +22,7 @@
     ]
   },
   "mixins": [
-    "fd-recipe-book.mixins.json"
+    "recipe-book-delight.mixins.json"
   ],
   "depends": {
     "fabricloader": "*",
