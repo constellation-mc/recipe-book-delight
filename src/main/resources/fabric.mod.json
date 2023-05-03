@@ -11,14 +11,14 @@
     "repo": "https://github.com/melontini/recipe-book-delight"
   },
   "license": "MIT",
-  "icon": "assets/recipe-book-delight/icon.png",
+  "icon": "icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
-      "me.melontini.fdrecipebook.client.RecipeBookDelightClient"
+      "me.melontini.recipe_book_delight.client.RecipeBookDelightClient"
     ],
     "main": [
-      "me.melontini.fdrecipebook.RecipeBookDelight"
+      "me.melontini.recipe_book_delight.RecipeBookDelight"
     ]
   },
   "mixins": [

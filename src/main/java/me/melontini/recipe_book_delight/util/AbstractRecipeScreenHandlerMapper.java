@@ -1,6 +1,6 @@
-package me.melontini.fdrecipebook.util;
+package me.melontini.recipe_book_delight.util;
 
-import me.melontini.fdrecipebook.RecipeBookDelight;
+import me.melontini.recipe_book_delight.RecipeBookDelight;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.InputSlotFiller;

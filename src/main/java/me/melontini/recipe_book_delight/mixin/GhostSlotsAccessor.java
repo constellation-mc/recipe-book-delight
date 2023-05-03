@@ -1,4 +1,4 @@
-package me.melontini.fdrecipebook.mixin;
+package me.melontini.recipe_book_delight.mixin;
 
 import net.minecraft.client.gui.screen.recipebook.RecipeBookGhostSlots;
 import org.spongepowered.asm.mixin.Mixin;
@@ -9,11 +9,11 @@ import java.util.List;
 @Mixin(RecipeBookGhostSlots.class)
 public interface GhostSlotsAccessor {
     @Accessor("time")
-    float time();
+    float fdrb$time();
 
     @Accessor("time")
-    void time(float time);
+    void fdrb$time(float time);
 
     @Accessor("slots")
-    List<RecipeBookGhostSlots.GhostInputSlot> slots();
+    List<RecipeBookGhostSlots.GhostInputSlot> fdrb$slots();
 }

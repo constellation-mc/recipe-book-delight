@@ -1,11 +1,11 @@
-package me.melontini.fdrecipebook.client;
+package me.melontini.recipe_book_delight.client;
 
 import com.google.common.collect.Lists;
 import com.nhoryzon.mc.farmersdelight.registry.ItemsRegistry;
 import com.nhoryzon.mc.farmersdelight.registry.RecipeTypesRegistry;
 import me.melontini.crackerutil.content.RecipeBookHelper;
 import me.melontini.crackerutil.util.EnumWrapper;
-import me.melontini.fdrecipebook.RecipeBookDelight;
+import me.melontini.recipe_book_delight.RecipeBookDelight;
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.recipebook.RecipeBookGroup;
 import net.minecraft.item.Items;

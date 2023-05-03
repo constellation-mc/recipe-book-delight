@@ -43,7 +43,7 @@ jobs:
           java: |
             17
 
-          modrinth-id: .
+          modrinth-id: cqC8Bgcm
           modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
           modrinth-featured: true
           modrinth-unfeature-mode: subset
@@ -52,7 +52,7 @@ jobs:
             farmers-delight-fabric | depends | *
 
 
-          curseforge-id: .
+          curseforge-id: 857553
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
           curseforge-dependencies: |
             fabric-api | depends | *

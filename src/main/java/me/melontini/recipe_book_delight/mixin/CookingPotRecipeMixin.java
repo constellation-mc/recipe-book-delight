@@ -1,4 +1,4 @@
-package me.melontini.fdrecipebook.mixin;
+package me.melontini.recipe_book_delight.mixin;
 
 import com.nhoryzon.mc.farmersdelight.recipe.CookingPotRecipe;
 import com.nhoryzon.mc.farmersdelight.registry.BlocksRegistry;

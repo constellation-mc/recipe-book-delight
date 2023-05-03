@@ -1,4 +1,4 @@
-package me.melontini.fdrecipebook.util;
+package me.melontini.recipe_book_delight.util;
 
 import com.nhoryzon.mc.farmersdelight.entity.block.CookingPotBlockEntity;
 import com.nhoryzon.mc.farmersdelight.entity.block.screen.CookingPotScreenHandler;

@@ -1,4 +1,4 @@
-package me.melontini.fdrecipebook;
+package me.melontini.recipe_book_delight;
 
 import me.melontini.crackerutil.content.RecipeBookHelper;
 import net.fabricmc.api.ModInitializer;

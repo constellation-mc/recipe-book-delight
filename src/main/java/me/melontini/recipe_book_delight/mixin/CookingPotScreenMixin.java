@@ -1,8 +1,8 @@
-package me.melontini.fdrecipebook.mixin;
+package me.melontini.recipe_book_delight.mixin;
 
 import com.nhoryzon.mc.farmersdelight.client.screen.CookingPotScreen;
 import com.nhoryzon.mc.farmersdelight.entity.block.screen.CookingPotScreenHandler;
-import me.melontini.fdrecipebook.client.CookingPotRecipeBook;
+import me.melontini.recipe_book_delight.client.CookingPotRecipeBook;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.screen.recipebook.RecipeBookProvider;
 import net.minecraft.client.gui.screen.recipebook.RecipeBookWidget;

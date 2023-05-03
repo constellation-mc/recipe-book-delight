@@ -1,4 +1,4 @@
-package me.melontini.fdrecipebook.util;
+package me.melontini.recipe_book_delight.util;
 
 import me.melontini.crackerutil.util.mixin.ExtendedPlugin;
 import net.fabricmc.loader.api.FabricLoader;
@@ -32,7 +32,7 @@ public class RecipeBookDelightPlugin extends ExtendedPlugin {
             MappingResolver resolver = FabricLoader.getInstance().getMappingResolver();
             ClassNode mixinNode;
             try {
-                mixinNode = MixinService.getService().getBytecodeProvider().getClassNode("me.melontini.fdrecipebook.util.AbstractRecipeScreenHandlerMapper");
+                mixinNode = MixinService.getService().getBytecodeProvider().getClassNode("me.melontini.recipe_book_delight.util.AbstractRecipeScreenHandlerMapper");
             } catch (IOException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
@@ -40,7 +40,7 @@ public class RecipeBookDelightPlugin extends ExtendedPlugin {
             for (MethodNode method : mixinNode.methods) {
                 if (!"<init>".equals(method.name) && !"<clinit>".equals(method.name)) {
                     for (LocalVariableNode localVariable : method.localVariables) {
-                        if ("Lme/melontini/fdrecipebook/util/AbstractRecipeScreenHandlerMapper;".equals(localVariable.desc) && "this".equals(localVariable.name)) {
+                        if ("Lme/melontini/recipe_book_delight/util/AbstractRecipeScreenHandlerMapper;".equals(localVariable.desc) && "this".equals(localVariable.name)) {
                             localVariable.desc = "Lcom/nhoryzon/mc/farmersdelight/entity/block/screen/CookingPotScreenHandlerMapper;";
                         }
                     }
@@ -49,14 +49,6 @@ public class RecipeBookDelightPlugin extends ExtendedPlugin {
             }
 
             transform(targetClassName, targetClass, resolver);
-
-            ClassWriter writer = new ClassWriter(0);
-            targetClass.accept(writer);
-            try {
-                Files.write(FabricLoader.getInstance().getGameDir().resolve("CookingPotScreenHandler.class"), writer.toByteArray());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
         }
     }
 
