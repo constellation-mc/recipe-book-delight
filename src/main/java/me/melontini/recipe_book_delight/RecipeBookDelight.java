@@ -1,6 +1,6 @@
 package me.melontini.recipe_book_delight;
 
-import me.melontini.crackerutil.content.RecipeBookHelper;
+import me.melontini.dark_matter.recipe_book.RecipeBookHelper;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.recipe.book.RecipeBookCategory;
 

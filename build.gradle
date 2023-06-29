@@ -33,9 +33,10 @@ dependencies {
     modImplementation("curse.maven:farmers_delight-482834:4111479")
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modImplementation include("me.melontini.cracker-util:cracker-util-base:${project.cracker_util}")
-    modImplementation include("me.melontini.cracker-util:cracker-util-recipe-book:${project.cracker_util}")
-    modImplementation include("me.melontini.cracker-util:cracker-util-enums:${project.cracker_util}")
+    modImplementation include("me.melontini.dark-matter:dark-matter-base:${project.dark_matter}")
+    modImplementation include("me.melontini.dark-matter:dark-matter-minecraft:${project.dark_matter}")
+    modImplementation include("me.melontini.dark-matter:dark-matter-enums:${project.dark_matter}")
+    modImplementation include("me.melontini.dark-matter:dark-matter-recipe-book:${project.dark_matter}")
 }
 
 processResources {

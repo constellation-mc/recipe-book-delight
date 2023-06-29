@@ -1,18 +1,16 @@
 package me.melontini.recipe_book_delight.util;
 
-import me.melontini.crackerutil.util.mixin.ExtendedPlugin;
+import me.melontini.dark_matter.util.mixin.ExtendedPlugin;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.MappingResolver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 import org.spongepowered.asm.service.MixinService;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
