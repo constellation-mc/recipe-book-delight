@@ -24,8 +24,8 @@ public abstract class AbstractRecipeScreenHandlerMapper extends AbstractRecipeSc
 
     @Override
     public void populateRecipeFinder(RecipeMatcher finder) {
-        for (int i = 0; i < RBUtils.trickGetTE(this).getInventory().size(); i++) {
-            ItemStack itemStack = RBUtils.trickGetTE(this).getInventory().getStack(i);
+        for (int i = 0; i < RBUtils.trickGetTE(this).size(); i++) {
+            ItemStack itemStack = RBUtils.trickGetTE(this).getStack(i);
             if (!itemStack.isEmpty()) {
                 finder.addInput(itemStack);
             }
@@ -41,7 +41,7 @@ public abstract class AbstractRecipeScreenHandlerMapper extends AbstractRecipeSc
 
     @Override
     public boolean matches(Recipe<? super Inventory> recipe) {
-        return recipe.matches(RBUtils.trickGetTE(this).getInventory(), RBUtils.trickGetTE(this).getWorld());
+        return recipe.matches(RBUtils.trickGetTE(this), RBUtils.trickGetTE(this).getWorld());
     }
 
     @Override

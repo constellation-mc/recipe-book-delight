@@ -3,11 +3,11 @@ package me.melontini.recipe_book_delight.mixin;
 import com.nhoryzon.mc.farmersdelight.client.screen.CookingPotScreen;
 import com.nhoryzon.mc.farmersdelight.entity.block.screen.CookingPotScreenHandler;
 import me.melontini.recipe_book_delight.client.CookingPotRecipeBook;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.screen.recipebook.RecipeBookProvider;
 import net.minecraft.client.gui.screen.recipebook.RecipeBookWidget;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.AbstractRecipeScreenHandler;
 import net.minecraft.screen.slot.Slot;
@@ -17,17 +17,21 @@ import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(CookingPotScreen.class)
 public abstract class CookingPotScreenMixin extends HandledScreen<CookingPotScreenHandler> implements RecipeBookProvider {
-    @Shadow protected abstract void renderHeatIndicatorTooltip(MatrixStack ms, int mouseX, int mouseY);
+    @Shadow protected abstract void renderHeatIndicatorTooltip(DrawContext ctx, int mouseX, int mouseY);
 
     public CookingPotScreenMixin(CookingPotScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
     }
 
+    @Unique
     private static final Identifier RECIPE_BUTTON_TEXTURE = new Identifier("textures/gui/recipe_button.png");
+    @Unique
     public final CookingPotRecipeBook recipeBook = new CookingPotRecipeBook();
+    @Unique
     private boolean narrow;
 
     @Override
@@ -42,7 +46,7 @@ public abstract class CookingPotScreenMixin extends HandledScreen<CookingPotScre
             this.recipeBook.reset();
             this.recipeBook.toggleOpen();
             this.x = this.recipeBook.findLeftEdge(this.width, this.backgroundWidth);
-            ((TexturedButtonWidget) buttonWidget).setPos(this.x + 5, this.height / 2 - 49);
+            buttonWidget.setPosition(this.x + 5, this.height / 2 - 49);
         }));
     }
 
@@ -57,20 +61,20 @@ public abstract class CookingPotScreenMixin extends HandledScreen<CookingPotScre
      * @reason recipe book rendering
      */
     @Overwrite
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        this.renderBackground(matrices);
+    public void render(DrawContext ctx, int mouseX, int mouseY, float delta) {
+        this.renderBackground(ctx);
         if (this.recipeBook.isOpen() && this.narrow) {
-            this.drawBackground(matrices, delta, mouseX, mouseY);
-            this.recipeBook.render(matrices, mouseX, mouseY, delta);
+            this.drawBackground(ctx, delta, mouseX, mouseY);
+            this.recipeBook.render(ctx, mouseX, mouseY, delta);
         } else {
-            this.recipeBook.render(matrices, mouseX, mouseY, delta);
-            super.render(matrices, mouseX, mouseY, delta);
-            this.recipeBook.drawGhostSlots(matrices, this.x, this.y, true, delta);
+            this.recipeBook.render(ctx, mouseX, mouseY, delta);
+            super.render(ctx, mouseX, mouseY, delta);
+            this.recipeBook.drawGhostSlots(ctx, this.x, this.y, true, delta);
         }
 
-        this.renderHeatIndicatorTooltip(matrices, mouseX, mouseY);
-        this.drawMouseoverTooltip(matrices, mouseX, mouseY);
-        this.recipeBook.drawTooltip(matrices, this.x, this.y, mouseX, mouseY);
+        this.renderHeatIndicatorTooltip(ctx, mouseX, mouseY);
+        this.drawMouseoverTooltip(ctx, mouseX, mouseY);
+        this.recipeBook.drawTooltip(ctx, this.x, this.y, mouseX, mouseY);
     }
 
     @Override
@@ -106,12 +110,6 @@ public abstract class CookingPotScreenMixin extends HandledScreen<CookingPotScre
     @Override
     public void refreshRecipeBook() {
         this.recipeBook.refresh();
-    }
-
-    @Override
-    public void removed() {
-        this.recipeBook.close();
-        super.removed();
     }
 
     @Override
