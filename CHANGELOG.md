@@ -1,3 +1,4 @@
 ## What's New:
 
-* CrackerUtil -> Dark Matter
+* Updated to FD 1.3.10
+* Updated Dark Matter

@@ -30,7 +30,7 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    modImplementation("curse.maven:farmers_delight-482834:4111479")
+    modImplementation("curse.maven:farmers_delight-482834:4634237")
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     modImplementation include("me.melontini.dark-matter:dark-matter-base:${project.dark_matter}")
