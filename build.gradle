@@ -33,10 +33,10 @@ dependencies {
     modImplementation("curse.maven:farmers_delight-482834:4640640")
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modImplementation include("me.melontini.dark-matter:dark-matter-base:${project.dark_matter}")
-    modImplementation include("me.melontini.dark-matter:dark-matter-minecraft:${project.dark_matter}")
-    modImplementation include("me.melontini.dark-matter:dark-matter-enums:${project.dark_matter}")
-    modImplementation include("me.melontini.dark-matter:dark-matter-recipe-book:${project.dark_matter}")
+    def dmModules = ["base", "minecraft", "enums", "recipe-book"]
+    for (final def module in dmModules) {
+        modApi include("me.melontini.dark-matter:dark-matter-${module}:${project.dark_matter}")
+    }
 }
 
 processResources {
