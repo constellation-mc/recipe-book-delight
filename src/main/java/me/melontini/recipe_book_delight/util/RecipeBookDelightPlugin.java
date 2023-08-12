@@ -1,6 +1,6 @@
 package me.melontini.recipe_book_delight.util;
 
-import me.melontini.dark_matter.util.mixin.ExtendedPlugin;
+import me.melontini.dark_matter.api.base.util.mixin.ExtendedPlugin;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.MappingResolver;
 import org.apache.logging.log4j.LogManager;
@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class RecipeBookDelightPlugin extends ExtendedPlugin {
-    private static final Logger LOGGER = LogManager.getLogger("FDRB Mixin Plugin");
+    private static final Logger LOGGER = LogManager.getLogger("RBD Mixin Plugin");
 
     @Override
     public void onLoad(String mixinPackage) {

@@ -17,6 +17,7 @@ import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(CookingPotScreen.class)
 public abstract class CookingPotScreenMixin extends HandledScreen<CookingPotScreenHandler> implements RecipeBookProvider {
@@ -26,8 +27,11 @@ public abstract class CookingPotScreenMixin extends HandledScreen<CookingPotScre
         super(handler, inventory, title);
     }
 
+    @Unique
     private static final Identifier RECIPE_BUTTON_TEXTURE = new Identifier("textures/gui/recipe_button.png");
+    @Unique
     public final CookingPotRecipeBook recipeBook = new CookingPotRecipeBook();
+    @Unique
     private boolean narrow;
 
     @Override
