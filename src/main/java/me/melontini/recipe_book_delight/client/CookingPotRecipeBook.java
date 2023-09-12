@@ -2,7 +2,6 @@ package me.melontini.recipe_book_delight.client;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.nhoryzon.mc.farmersdelight.recipe.CookingPotRecipe;
-import me.melontini.recipe_book_delight.mixin.GhostSlotsAccessor;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.recipebook.RecipeBookGhostSlots;
@@ -38,11 +37,11 @@ public class CookingPotRecipeBook extends RecipeBookWidget {
 
     public void drawGhostSlots(MatrixStack matrices, int i, int j, boolean bl, float f) {
         if (!Screen.hasControlDown()) {
-            ((GhostSlotsAccessor) this.ghostSlots).fdrb$time(((GhostSlotsAccessor) this.ghostSlots).fdrb$time() + f);
+            this.ghostSlots.time += f;
         }
 
-        for (int k = 0; k < ((GhostSlotsAccessor) this.ghostSlots).fdrb$slots().size(); ++k) {
-            RecipeBookGhostSlots.GhostInputSlot ghostInputSlot = ((GhostSlotsAccessor) this.ghostSlots).fdrb$slots().get(k);
+        for (int k = 0; k < this.ghostSlots.slots.size(); ++k) {
+            RecipeBookGhostSlots.GhostInputSlot ghostInputSlot = this.ghostSlots.slots.get(k);
             int l = ghostInputSlot.getX() + i;
             int m = ghostInputSlot.getY() + j;
             DrawableHelper.fill(matrices, l, m, l + 16, m + 16, 822018048);
