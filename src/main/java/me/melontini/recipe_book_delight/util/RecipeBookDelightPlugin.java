@@ -28,18 +28,18 @@ public class RecipeBookDelightPlugin extends ExtendedPlugin {
     public void postApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) {
         if (targetClassName.contains("CookingPotScreenHandler") && mixinClassName.contains("AsmTargets")) {
             MappingResolver resolver = FabricLoader.getInstance().getMappingResolver();
-            ClassNode mixinNode;
+            ClassNode mapperName;
             try {
-                mixinNode = MixinService.getService().getBytecodeProvider().getClassNode("me.melontini.recipe_book_delight.util.AbstractRecipeScreenHandlerMapper");
+                mapperName = MixinService.getService().getBytecodeProvider().getClassNode("me.melontini.recipe_book_delight.util.AbstractRecipeScreenHandlerMapper");
             } catch (IOException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
 
-            for (MethodNode method : mixinNode.methods) {
+            for (MethodNode method : mapperName.methods) {
                 if (!"<init>".equals(method.name) && !"<clinit>".equals(method.name)) {
                     for (LocalVariableNode localVariable : method.localVariables) {
                         if ("Lme/melontini/recipe_book_delight/util/AbstractRecipeScreenHandlerMapper;".equals(localVariable.desc) && "this".equals(localVariable.name)) {
-                            localVariable.desc = "Lcom/nhoryzon/mc/farmersdelight/entity/block/screen/CookingPotScreenHandlerMapper;";
+                            localVariable.desc = "Lcom/nhoryzon/mc/farmersdelight/entity/block/screen/CookingPotScreenHandler;";
                         }
                     }
                     targetClass.methods.add(method);
