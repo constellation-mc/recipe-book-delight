@@ -91,8 +91,7 @@ public class RecipeBookDelightPlugin extends ExtendedPlugin {
             method1.get(0).instructions.set(node, methodInsnNode);
         } catch (Exception e) {
             LOGGER.error("#########################################################");
-            LOGGER.error(name + " transformation failed 😢");
-            e.printStackTrace();
+            LOGGER.error(name + " transformation failed 😢", e);
             LOGGER.error("#########################################################");
         }
     }
