@@ -1,6 +1,6 @@
 package me.melontini.recipe_book_delight.util;
 
-import me.melontini.dark_matter.api.base.util.mixin.ExtendedPlugin;
+import me.melontini.dark_matter.api.base.util.mixin.ExtendablePlugin;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.MappingResolver;
 import org.apache.logging.log4j.LogManager;
@@ -15,17 +15,18 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-public class RecipeBookDelightPlugin extends ExtendedPlugin {
+@SuppressWarnings("UnstableApiUsage")
+public class RecipeBookDelightPlugin extends ExtendablePlugin {
     private static final Logger LOGGER = LogManager.getLogger("RBD Mixin Plugin");
 
     @Override
-    public void onLoad(String mixinPackage) {
+    public void onPluginLoad(String mixinPackage) {
         if (!FabricLoader.getInstance().isModLoaded("farmersdelight"))
             throw new RuntimeException("RecipeBookDelight requires Farmers Delight!");
     }
 
     @Override
-    public void postApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) {
+    public void afterApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) {
         if (targetClassName.contains("CookingPotScreenHandler") && mixinClassName.contains("AsmTargets")) {
             MappingResolver resolver = FabricLoader.getInstance().getMappingResolver();
             ClassNode mapperName;

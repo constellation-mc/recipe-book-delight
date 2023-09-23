@@ -18,9 +18,8 @@ public class RecipeBookDelightClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        RecipeBookHelper.addRecipePredicate(RecipeTypesRegistry.COOKING_RECIPE_SERIALIZER.type(), recipe -> COOKING_POT_MAIN);
-        RecipeBookHelper.addToGetGroups(RecipeBookDelight.COOKING_POT, Lists.newArrayList(COOKING_POT_SEARCH, COOKING_POT_MAIN));
-        RecipeBookHelper.addToSearchMap(COOKING_POT_SEARCH, Lists.newArrayList(COOKING_POT_MAIN));
+        RecipeBookHelper.registerGroupLookup(RecipeTypesRegistry.COOKING_RECIPE_SERIALIZER.type(), recipe -> COOKING_POT_MAIN);
+        RecipeBookHelper.registerAndAddToSearch(RecipeBookDelight.COOKING_POT, COOKING_POT_SEARCH, Lists.newArrayList(COOKING_POT_MAIN));
 
         FabricLoader.getInstance().getObjectShare().put("recipe-book-delight:registered_groups", RecipeBookDelight.COOKING_POT);
     }
