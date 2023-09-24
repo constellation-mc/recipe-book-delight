@@ -5,6 +5,7 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.recipebook.RecipeBookGhostSlots;
 import net.minecraft.client.gui.screen.recipebook.RecipeBookWidget;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
@@ -45,7 +46,7 @@ public class CookingPotRecipeBook extends RecipeBookWidget {
 
             ItemStack itemStack = ghostInputSlot.getCurrentItemStack();
             ctx.drawItemWithoutEntity(itemStack, l, m);
-            ctx.fill(l, m, l + 16, m + 16, 822083583);
+            ctx.fill(RenderLayer.getGuiGhostRecipeOverlay(), l, m, l + 16, m + 16, 822083583);
             if (k == 0) {
                 ctx.drawItemInSlot(client.textRenderer, itemStack, l, m);
             }
