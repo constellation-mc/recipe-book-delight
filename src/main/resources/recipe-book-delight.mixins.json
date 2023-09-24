@@ -9,8 +9,7 @@
     "AsmTargets"
   ],
   "client": [
-    "CookingPotScreenMixin",
-    "GhostSlotsAccessor"
+    "CookingPotScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

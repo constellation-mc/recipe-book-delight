@@ -1,6 +1,6 @@
 package me.melontini.recipe_book_delight.util;
 
-import me.melontini.dark_matter.api.base.util.mixin.ExtendedPlugin;
+import me.melontini.dark_matter.api.base.util.mixin.ExtendablePlugin;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.MappingResolver;
 import org.apache.logging.log4j.LogManager;
@@ -15,31 +15,32 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-public class RecipeBookDelightPlugin extends ExtendedPlugin {
+@SuppressWarnings("UnstableApiUsage")
+public class RecipeBookDelightPlugin extends ExtendablePlugin {
     private static final Logger LOGGER = LogManager.getLogger("RBD Mixin Plugin");
 
     @Override
-    public void onLoad(String mixinPackage) {
+    public void onPluginLoad(String mixinPackage) {
         if (!FabricLoader.getInstance().isModLoaded("farmersdelight"))
             throw new RuntimeException("RecipeBookDelight requires Farmers Delight!");
     }
 
     @Override
-    public void postApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) {
+    public void afterApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) {
         if (targetClassName.contains("CookingPotScreenHandler") && mixinClassName.contains("AsmTargets")) {
             MappingResolver resolver = FabricLoader.getInstance().getMappingResolver();
-            ClassNode mixinNode;
+            ClassNode mapperName;
             try {
-                mixinNode = MixinService.getService().getBytecodeProvider().getClassNode("me.melontini.recipe_book_delight.util.AbstractRecipeScreenHandlerMapper");
+                mapperName = MixinService.getService().getBytecodeProvider().getClassNode("me.melontini.recipe_book_delight.util.AbstractRecipeScreenHandlerMapper");
             } catch (IOException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
 
-            for (MethodNode method : mixinNode.methods) {
+            for (MethodNode method : mapperName.methods) {
                 if (!"<init>".equals(method.name) && !"<clinit>".equals(method.name)) {
                     for (LocalVariableNode localVariable : method.localVariables) {
                         if ("Lme/melontini/recipe_book_delight/util/AbstractRecipeScreenHandlerMapper;".equals(localVariable.desc) && "this".equals(localVariable.name)) {
-                            localVariable.desc = "Lcom/nhoryzon/mc/farmersdelight/entity/block/screen/CookingPotScreenHandlerMapper;";
+                            localVariable.desc = "Lcom/nhoryzon/mc/farmersdelight/entity/block/screen/CookingPotScreenHandler;";
                         }
                     }
                     targetClass.methods.add(method);
@@ -91,8 +92,7 @@ public class RecipeBookDelightPlugin extends ExtendedPlugin {
             method1.get(0).instructions.set(node, methodInsnNode);
         } catch (Exception e) {
             LOGGER.error("#########################################################");
-            LOGGER.error(name + " transformation failed 😢");
-            e.printStackTrace();
+            LOGGER.error(name + " transformation failed 😢", e);
             LOGGER.error("#########################################################");
         }
     }

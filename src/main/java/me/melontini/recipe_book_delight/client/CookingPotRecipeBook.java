@@ -1,7 +1,6 @@
 package me.melontini.recipe_book_delight.client;
 
 import com.nhoryzon.mc.farmersdelight.recipe.CookingPotRecipe;
-import me.melontini.recipe_book_delight.mixin.GhostSlotsAccessor;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.recipebook.RecipeBookGhostSlots;
@@ -35,11 +34,11 @@ public class CookingPotRecipeBook extends RecipeBookWidget {
 
     public void drawGhostSlots(DrawContext ctx, int i, int j, boolean bl, float f) {
         if (!Screen.hasControlDown()) {
-            ((GhostSlotsAccessor) this.ghostSlots).fdrb$time(((GhostSlotsAccessor) this.ghostSlots).fdrb$time() + f);
+            this.ghostSlots.time += f;
         }
 
-        for (int k = 0; k < ((GhostSlotsAccessor) this.ghostSlots).fdrb$slots().size(); ++k) {
-            RecipeBookGhostSlots.GhostInputSlot ghostInputSlot = ((GhostSlotsAccessor) this.ghostSlots).fdrb$slots().get(k);
+        for (int k = 0; k < this.ghostSlots.slots.size(); ++k) {
+            RecipeBookGhostSlots.GhostInputSlot ghostInputSlot = this.ghostSlots.slots.get(k);
             int l = ghostInputSlot.getX() + i;
             int m = ghostInputSlot.getY() + j;
             ctx.fill(l, m, l + 16, m + 16, 822018048);
