@@ -1,4 +1,3 @@
 ## What's New:
 
-* Updated Dark Matter.
-* Fixed ghost items rendering over the red overlay
+* Updated to 1.20.2

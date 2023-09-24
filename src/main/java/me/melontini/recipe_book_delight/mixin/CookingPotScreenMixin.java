@@ -28,8 +28,6 @@ public abstract class CookingPotScreenMixin extends HandledScreen<CookingPotScre
     }
 
     @Unique
-    private static final Identifier RECIPE_BUTTON_TEXTURE = new Identifier("textures/gui/recipe_button.png");
-    @Unique
     public final CookingPotRecipeBook recipeBook = new CookingPotRecipeBook();
     @Unique
     private boolean narrow;
@@ -42,7 +40,7 @@ public abstract class CookingPotScreenMixin extends HandledScreen<CookingPotScre
         this.x = this.recipeBook.findLeftEdge(this.width, this.backgroundWidth);
         this.addSelectableChild(this.recipeBook);
         this.setInitialFocus(this.recipeBook);
-        this.addDrawableChild(new TexturedButtonWidget(this.x + 5, this.height / 2 - 49, 20, 18, 0, 0, 19, RECIPE_BUTTON_TEXTURE, buttonWidget -> {
+        this.addDrawableChild(new TexturedButtonWidget(this.x + 5, this.height / 2 - 49, 20, 18, RecipeBookWidget.BUTTON_TEXTURES, buttonWidget -> {
             this.recipeBook.reset();
             this.recipeBook.toggleOpen();
             this.x = this.recipeBook.findLeftEdge(this.width, this.backgroundWidth);
@@ -62,7 +60,7 @@ public abstract class CookingPotScreenMixin extends HandledScreen<CookingPotScre
      */
     @Overwrite
     public void render(DrawContext ctx, int mouseX, int mouseY, float delta) {
-        this.renderBackground(ctx);
+        this.renderBackground(ctx, mouseX, mouseY, delta);
         if (this.recipeBook.isOpen() && this.narrow) {
             this.drawBackground(ctx, delta, mouseX, mouseY);
             this.recipeBook.render(ctx, mouseX, mouseY, delta);

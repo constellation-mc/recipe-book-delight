@@ -5,6 +5,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.InputSlotFiller;
 import net.minecraft.recipe.Recipe;
+import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.recipe.RecipeMatcher;
 import net.minecraft.recipe.book.RecipeBookCategory;
 import net.minecraft.screen.AbstractRecipeScreenHandler;
@@ -18,8 +19,8 @@ public abstract class AbstractRecipeScreenHandlerMapper extends AbstractRecipeSc
     }
 
     @Override
-    public void fillInputSlots(boolean craftAll, Recipe<?> recipe, ServerPlayerEntity player) {
-        new InputSlotFiller<>(this).fillInputSlots(player, (Recipe<Inventory>) recipe, craftAll);
+    public void fillInputSlots(boolean craftAll, RecipeEntry<?> recipe, ServerPlayerEntity player) {
+        new InputSlotFiller<>(this).fillInputSlots(player, (RecipeEntry<? extends Recipe<Inventory>>) recipe, craftAll);
     }
 
     @Override
@@ -40,8 +41,8 @@ public abstract class AbstractRecipeScreenHandlerMapper extends AbstractRecipeSc
     }
 
     @Override
-    public boolean matches(Recipe<? super Inventory> recipe) {
-        return recipe.matches(RBUtils.trickGetTE(this), RBUtils.trickGetTE(this).getWorld());
+    public boolean matches(RecipeEntry<? extends Recipe<Inventory>> recipe) {
+        return recipe.value().matches(RBUtils.trickGetTE(this), RBUtils.trickGetTE(this).getWorld());
     }
 
     @Override

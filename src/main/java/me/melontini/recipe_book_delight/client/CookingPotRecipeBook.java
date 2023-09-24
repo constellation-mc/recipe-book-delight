@@ -8,7 +8,7 @@ import net.minecraft.client.gui.screen.recipebook.RecipeBookWidget;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
+import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.collection.DefaultedList;
 
@@ -16,12 +16,12 @@ import java.util.List;
 
 public class CookingPotRecipeBook extends RecipeBookWidget {
     @Override
-    public void showGhostRecipe(Recipe<?> recipe, List<Slot> slots) {
-        if (recipe instanceof CookingPotRecipe cookingPotRecipe) {
+    public void showGhostRecipe(RecipeEntry<?> recipe, List<Slot> slots) {
+        if (recipe.value() instanceof CookingPotRecipe cookingPotRecipe) {
             ItemStack container = cookingPotRecipe.getContainer();
-            ItemStack itemStack = cookingPotRecipe.getOutput(this.client.world.getRegistryManager());
+            ItemStack itemStack = cookingPotRecipe.getResult(this.client.world.getRegistryManager());
 
-            this.ghostSlots.setRecipe(cookingPotRecipe);
+            this.ghostSlots.setRecipe(recipe);
             this.ghostSlots.addSlot(Ingredient.ofStacks(itemStack), slots.get(8).x, slots.get(8).y);
             if (!container.isEmpty()) {
                 this.ghostSlots.addSlot(Ingredient.ofStacks(container), slots.get(7).x, slots.get(7).y);
