@@ -1,6 +1,17 @@
 
 name: publish
-on: [workflow_dispatch]
+on:
+  workflow_dispatch:
+    inputs:
+      version_type:
+        description: "The type of this version. e.g alpha"
+        type: choice
+        default: beta
+        options:
+          - release
+          - beta
+          - alpha
+        required: false
 
 jobs:
   publish:
@@ -42,6 +53,7 @@ jobs:
 
           github-tag: v${{ env.VERSION_PLAIN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-commitish: ${{ github.sha }}
           github-prerelease: false
 
           modrinth-id: cqC8Bgcm
