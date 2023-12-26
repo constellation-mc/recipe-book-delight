@@ -1,8 +1,8 @@
 package me.melontini.recipe_book_delight.util;
 
+import me.melontini.dark_matter.api.base.util.Mapper;
 import me.melontini.dark_matter.api.base.util.mixin.ExtendablePlugin;
 import net.fabricmc.loader.api.FabricLoader;
-import net.fabricmc.loader.api.MappingResolver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.objectweb.asm.Opcodes;
@@ -28,7 +28,6 @@ public class RecipeBookDelightPlugin extends ExtendablePlugin {
     @Override
     public void afterApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) {
         if (targetClassName.contains("CookingPotScreenHandler") && mixinClassName.contains("AsmTargets")) {
-            MappingResolver resolver = FabricLoader.getInstance().getMappingResolver();
             ClassNode mapperName;
             try {
                 mapperName = MixinService.getService().getBytecodeProvider().getClassNode("me.melontini.recipe_book_delight.util.AbstractRecipeScreenHandlerMapper");
@@ -47,17 +46,17 @@ public class RecipeBookDelightPlugin extends ExtendablePlugin {
                 }
             }
 
-            transform(targetClassName, targetClass, resolver);
+            transform(targetClassName, targetClass);
         }
     }
 
-    public void transform(String targetClassName, ClassNode targetClass, MappingResolver resolver) {
+    public void transform(String targetClassName, ClassNode targetClass) {
         String name = Arrays.stream(targetClassName.split("\\.")).toList().get(targetClassName.split("\\.").length - 1);
         LOGGER.warn("transforming " + name + " to support recipe book");
         try {
-            String AbstractRecipeScreenHandler = resolver.mapClassName("intermediary", "net.minecraft.class_1729");
-            String Inventory = resolver.mapClassName("intermediary", "net.minecraft.class_1263");
-            String ScreenHandlerType = resolver.mapClassName("intermediary", "net.minecraft.class_3917");
+            String AbstractRecipeScreenHandler = Mapper.mapClass("net.minecraft.class_1729");
+            String Inventory = Mapper.mapClass("net.minecraft.class_1263");
+            String ScreenHandlerType = Mapper.mapClass("net.minecraft.class_3917");
 
             targetClass.signature = "L" + AbstractRecipeScreenHandler.replace(".", "/") + "<L" + Inventory.replace(".", "/") + ";>;";
             targetClass.superName = AbstractRecipeScreenHandler.replace(".", "/");
